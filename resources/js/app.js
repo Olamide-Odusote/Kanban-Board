@@ -130,9 +130,8 @@ if (form != null) {
                 taskElement.classList.remove("is-dragging");
             });
 
-            let size = Number(todoLane.dataset.size);
             todoLane.appendChild(taskElement);
-            todoLane.dataset.size = size + 1;
+            todoLane.dataset.size = Number(todoLane.dataset.size) + 1;
 
             form.reset();
         })
