@@ -2,12 +2,15 @@ FROM php:8.2-apache
 
 # Install system dependencies (including Node.js for Vite compilation)
 RUN apt-get update && apt-get install -y \
-    libpng-dev libjpeg-dev libfreetype6-dev zip unzip git libpq-dev curl \
-    && curl -fsSL https://deb.nodesource.com | bash - \
-    && apt-get install -y nodejs \
+    libpng-dev libjpeg-dev libfreetype6-dev zip unzip git libpq-dev curl ca-certificates gnupg \
+    && mkdir -p /etc/apt/keyrings \
+    && curl -fsSL https://nodesource.com | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg \
+    && echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://nodesource.com nodistro main" | tee /etc/apt/sources.list.d/nodesource.list \
+    && apt-get update && apt-get install -y nodejs \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install pdo_mysql pdo_pgsql gd \
     && a2enmod rewrite
+
 
 
 # Set Apache Document Root to Laravel's public folder
