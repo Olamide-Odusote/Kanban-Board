@@ -2,12 +2,13 @@ FROM php:8.2-apache
 
 # Install system dependencies (including Node.js for Vite compilation)
 RUN apt-get update && apt-get install -y \
-    libpng-dev libjpeg-dev libfreetype6-dev zip unzip git libpq-dev \
-    && curl -fsSL https://nodesource.com | bash - \
+    libpng-dev libjpeg-dev libfreetype6-dev zip unzip git libpq-dev curl \
+    && curl -fsSL https://deb.nodesource.com | bash - \
     && apt-get install -y nodejs \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install pdo_mysql pdo_pgsql gd \
     && a2enmod rewrite
+
 
 # Set Apache Document Root to Laravel's public folder
 ENV APACHE_DOCUMENT_ROOT /var/www/html/public
