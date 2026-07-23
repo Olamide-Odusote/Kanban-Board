@@ -54,8 +54,6 @@ class BoardController extends Controller
             'board_id' => $this->board->id
         ]);
 
-
-        Log::info('Tasks', $this->board->tasks->toArray());
         return response()->json(['task' => $task], 201);
     }
 
@@ -69,7 +67,6 @@ class BoardController extends Controller
                     ->firstOrFail();
         
         $task->delete();
-        $task->save();
         return response()->json(['task' => $task], 201);
     }
 
