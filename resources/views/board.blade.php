@@ -40,7 +40,7 @@
                     <h3 class="heading">To Do</h3>
 
                     @foreach ($todo as $todoTask)
-                    <div class="task" draggable="true" data-position="{{ $todoTask->position }}">{{ $todoTask->name }}</div>
+                    <div class="task" draggable="true" data-id="{{ $todoTask->id }}" data-name="{{ $todoTask->name }}" data-position="{{ $todoTask->position }}">{{ $todoTask->name }}</div>
                     @endforeach
 
                 </div>
@@ -49,7 +49,7 @@
                     <h3 class="heading">Doing</h3>
 
                     @foreach ($doing as $doingTask)
-                    <div class="task" draggable="true" data-position="{{ $doingTask->position }}">{{ $doingTask->name }}</div>
+                    <div class="task" draggable="true" data-id="{{ $doingTask->id }}" data-name="{{ $doingTask->name }}" data-position="{{ $doingTask->position }}">{{ $doingTask->name }}</div>
                     @endforeach
 
                 </div>
@@ -58,11 +58,24 @@
                     <h3 class="heading">Done</h3>
 
                     @foreach ($done as $doneTask)
-                    <div class="task" draggable="true" data-position="{{ $doneTask->position }}">{{ $doneTask->name }}</div>
+                    <div class="task" draggable="true" data-id="{{ $doneTask->id }}" data-name="{{ $doneTask->name }}" data-position="{{ $doneTask->position }}">{{ $doneTask->name }}</div>
                     @endforeach
 
                 </div>
             </div>
+        </div>
+
+        <br/>
+
+        <div id="edit-delete-buttons" class="edit-delete-buttons hidden">
+            <button id="edit-button">
+                Edit 
+                <img src="{{ asset('images/edit.png') }}" alt="edit"/>
+            </button>
+            <button id="delete-button">
+                Delete 
+                <img src="{{ asset('images/delete.png') }}" alt="delete"/>
+            </button>
         </div>
 
         

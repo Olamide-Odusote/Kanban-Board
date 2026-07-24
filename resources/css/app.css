@@ -3,7 +3,7 @@
 * {
     font-family: 'Inter', sans-serif;
     box-sizing: border-box;
-    scrollbar-width: none;
+    scrollbar-color: #693d05 #ffe4c4;
 }
 
 body {
@@ -116,13 +116,20 @@ form > button {
 button {
     color: #3f2f1f;
     background-color: bisque;
-    border-color:rgb(255, 213, 162) 
+    border-color:rgb(255, 213, 162);
+    height: 40px;
+    font-size: 15px;
 }
 
 button:hover {
     color: bisque;
     background-color: #693d05;
     border-color:#573304;
+}
+
+img {
+    width: 12px;
+    height: 12px;
 }
 
 .task {
@@ -143,9 +150,12 @@ button:hover {
     transform: translateY(-2px);
 }
 
-.is-dragging {
+.is-dragging, .selected {
     color: #3f2f1f;
     background-color: #ffd59e;
+}
+
+.is-dragging {
     transition: none;
     cursor: grabbing;
 }
@@ -156,4 +166,8 @@ button:hover {
 
 #logout > input {
     width: 100px;
+}
+
+.hidden {
+    display: none;
 }
