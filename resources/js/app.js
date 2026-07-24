@@ -192,12 +192,12 @@ function selectTask(task) {
                 .then((response) => {
                     editForm.remove();
                     selected.textContent = selected.dataset.name = response.data.task.name;
+                    editing = false;
                     deselectTask();
                     addListeners();
-                    editing = false;
                 })
                 .catch((error) => {
-                console.log(error.response.data);
+                console.log(error.response?.data);
                 })
             })
         });
@@ -221,14 +221,14 @@ function selectTask(task) {
 
 function deselectTask() {
     if (selected != null){
-        console.log(selected.dataset.name + " Deselected");
         if (editing) {
-            selected.removeChild(document.getElementById("editForm"));
+            selected.removeChild(document.querySelector("editForm"));
             selected.textContent = selected.dataset.name;
             editing = false;
         }
 
         selected.classList.remove("selected");
+        console.log(selected.dataset.name + " Deselected");
         editDeleteButtons.classList.add("hidden");
         selected = null;
     }
