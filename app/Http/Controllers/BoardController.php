@@ -59,43 +59,34 @@ class BoardController extends Controller
 
     public function deleteTask(Request $request) {
         $validated = $request->validate([
-            'name' => ['required', 'string']
+            'id' => ['required', 'int']
         ]);
 
-        $task = Task::where('name', $validated['name']) 
-                    ->where('board_id', $this->board->id)
-                    ->firstOrFail();
-        
+        $task = Task::findOrFail($validated['id']);
         $task->delete();
         return response()->json(['task' => $task], 201);
     }
 
     public function changeTaskName(Request $request) {
         $validated = $request->validate([
-            'old_name' => ['required', 'string'],
-            'new_name' => ['required', 'string']
+            'id' => ['required', 'int'],
+            'newName' => ['required', 'string']
         ]);
 
-        $task = Task::where('name', $validated['old_name']) 
-                    ->where('board_id', $this->board->id)
-                    ->firstOrFail();
-        
-        $task->name = $validated['new_name'];
+        $task = Task::findOrFail($validated['id']);
+        $task->name = $validated['newName'];
         $task->save();
         return response()->json(['task' => $task], 201);
     }
 
     public function moveTask(Request $request) {
         $validated = $request->validate([
-            'name' => ['required', 'string'], 
+            'id' => ['required', 'int'], 
             'status' => ['required', 'string'],
             'position' => ['required', 'int']
         ]);
 
-        $task = Task::where('name', $validated['name']) 
-                    ->where('board_id', $this->board->id)
-                    ->firstOrFail();
-        
+        $task = Task::findOrFail($validated['id']);      
         $task->status = $validated['status'];
         $task->position = $validated['position'];
         $task->save();
