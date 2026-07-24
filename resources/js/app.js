@@ -172,7 +172,7 @@ function selectTask(task) {
             editDeleteButtons.classList.add("hidden");
             console.log("Editing: " + selected.dataset.name);
             let editForm = document.createElement("form");
-            editForm.id = "editForm";
+            editForm.id = "edit-form";
             let input = document.createElement("input");
             input.type = "text";
             input.value = selected.dataset.name
@@ -197,7 +197,7 @@ function selectTask(task) {
                     addListeners();
                 })
                 .catch((error) => {
-                console.log(error.response?.data);
+                console.log(error.response.data);
                 })
             })
         });
@@ -222,7 +222,7 @@ function selectTask(task) {
 function deselectTask() {
     if (selected != null){
         if (editing) {
-            selected.removeChild(document.querySelector("editForm"));
+            selected.removeChild(document.querySelector("#edit-form"));
             selected.textContent = selected.dataset.name;
             editing = false;
         }
